@@ -51,27 +51,14 @@ const getPostsBySearch = async (req, res) => {
 };
 
 const createPost = (req, res) => {
-  /* const post = req.body;
-  const newPost = new postMessage({
-    ...post,
-    creator: req.userId,
-    createAt: new Date().toString(),
-  });
-  newPost.save((error, newPost) => {
-    if (!error) {
-      return res.status(200).json(newPost);
-    } else {
-      return res.status(404).json({ message: error.message });
-    }
-  }); */
   const post = req.body;
+
   cloudinary.uploader.upload(
     post.selectedFile,
     {
       upload_preset: process.env.CLOUDINARY_PRESET_NAME,
     },
     function (error, result) {
-      //console.log(result);
       if (error || !result) {
         console.log(error);
       } else {
@@ -150,6 +137,26 @@ const likePost = async (req, res) => {
   return res.status(200).json(updatedPost);
 };
 
+const commentPost = async (req, res) => {
+  const { id } = req.params;
+  const { comment } = req.body;
+
+  try {
+    const post = await postMessage.findById(id);
+
+    post.comments.push(comment);
+
+    const updatedPost = await postMessage.findByIdAndUpdate(id, post, {
+      new: true,
+    });
+
+    res.status(200).json(updatedPost);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getPost,
   getPosts,
@@ -158,4 +165,5 @@ module.exports = {
   updatePost,
   deletePost,
   likePost,
+  commentPost,
 };
