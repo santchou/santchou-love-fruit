@@ -28,9 +28,9 @@ app.use("/auth/users", userRoutes);
 //-----------------------------DEPLOYMENT--------------------------------------------------
 
 const __dirname1 = path.resolve();
+console.log(__dirname1);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname1, "/frontend/build")));
-
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"));
   });
