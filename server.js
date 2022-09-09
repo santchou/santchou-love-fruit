@@ -25,12 +25,23 @@ app.use(express.json({ limit: "30mb" }));
 app.use("/api/posts", postRoutes);
 app.use("/auth/users", userRoutes);
 
-//-----------------------------DEPLOYMENT--------------------------------------------------
+/*  */
+
+/* const __dirname1 = path.resolve();
+console.log(__dirname1);
+
+if (process.env.NODE_ENV) {
+  
+  app.use(express.static("app/client/build"));
+  app.get("*", function (req, res) {
+    res.sendFile(path.resolve(__dirname1, "app/client/build", "index.html"));
+  });
+} */
 
 const __dirname1 = path.resolve();
-console.log(__dirname1);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname1, "/frontend/build")));
+
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"));
   });
@@ -39,7 +50,6 @@ if (process.env.NODE_ENV === "production") {
     res.send("API Running Successfully");
   });
 }
-//-----------------------------DEPLOYMENT--------------------------------------------------
 
 // port
 const PORT = process.env.PORT || 5000;
