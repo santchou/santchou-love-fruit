@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.83a02003.css",
-    "main.js": "/static/js/main.e19e143b.js",
+    "main.js": "/static/js/main.cd16c24e.js",
     "static/media/avocado.jpg": "/static/media/avocado.ddb0c1a67e2b014f7398.jpg",
     "index.html": "/index.html",
     "main.83a02003.css.map": "/static/css/main.83a02003.css.map",
-    "main.e19e143b.js.map": "/static/js/main.e19e143b.js.map"
+    "main.cd16c24e.js.map": "/static/js/main.cd16c24e.js.map"
   },
   "entrypoints": [
     "static/css/main.83a02003.css",
-    "static/js/main.e19e143b.js"
+    "static/js/main.cd16c24e.js"
   ]
 }
